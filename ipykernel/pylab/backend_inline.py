@@ -123,6 +123,11 @@ def flush_figures():
             else:
                 ip.showtraceback()
                 return
+        finally:
+            # clear flags for next round
+            show._to_draw = []
+            show._draw_called = False
+
     try:
         # exclude any figures that were closed:
         active = set([fm.canvas.figure for fm in Gcf.get_all_fig_managers()])
